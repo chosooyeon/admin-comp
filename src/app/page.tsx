@@ -1,4 +1,4 @@
-import "./globals.css";
+import "@/app/globals.css";
 import Button from "@/components/button";
 
 export default function Home() {

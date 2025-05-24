@@ -8,12 +8,29 @@
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  
+
   --color-primary: oklch(0.546 0.245 262.881);
   --color-secondary: oklch(0.929 0.013 255.508);
   --color-danger: oklch(0.577 0.245 27.325);
   --color-warning: oklch(0.724 0.176 56.467);
   --color-info: oklch(0.898 0 89.876);
+}
+
+@layer components {
+  .btn-primary {
+    border-radius: calc(infinity * 1px);
+    background-color: var(--color-violet-500);
+    padding-inline: --spacing(5);
+    padding-block: --spacing(2);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-white);
+    box-shadow: var(--shadow-md);
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-violet-700);
+      }
+    }
+  }
 }
 
 /*

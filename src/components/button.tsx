@@ -23,7 +23,7 @@ const BaseButton: React.FC<BaseButtonProps> = ({
   onClick
 }) => {
   const buttonClasses = useMemo(() => [
-    type === 'primary' ? 'bg-primary' : '',
+    type === 'primary' ? 'btn-primary' : '',
     type === 'secondary' ? 'bg-secondary' : '',
     type === 'danger' ? 'bg-danger' : '',
     disabled ? 'opacity-50 cursor-not-allowed' : ''

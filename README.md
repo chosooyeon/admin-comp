@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Admin Component Library
 
-## Getting Started
+관리자 페이지 구축을 위한 컴포넌트 라이브러리입니다. Next.js 15와 TypeScript를 기반으로 제작되었으며, 재사용 가능한 관리자 UI 컴포넌트들을 제공합니다.
 
-First, run the development server:
+## 기술 스택
+
+- Next.js 15
+- TypeScript
+- Tailwind CSS
+- React
+- ESLint
+
+## 시작하기
+
+개발 서버 실행:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+http://localhost:3000 에서 결과를 확인할 수 있습니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 주요 기능
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 반응형 디자인
+- 접근성 고려
+- 다크모드 지원
+- TypeScript 기반 타입 안정성
 
-## Learn More
+## TODO List
 
-To learn more about Next.js, take a look at the following resources:
+### 디자인 시스템
+- [ ] 컬러 시스템 정의
+- [ ] 타이포그래피 시스템 구축
+- [ ] 공통 컴포넌트 스타일 가이드 작성
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 컴포넌트 개발
+- [ ] 사이드바 네비게이션
+  - [ ] 접힘/펼침 기능
+  - [ ] 활성 메뉴 하이라이트
+  - [ ] 서브메뉴 지원
+- [ ] 인증 시스템
+  - [ ] 로그인 페이지
+  - [ ] 회원가입 페이지
+  - [ ] 비밀번호 재설정
+- [ ] 데이터 테이블
+  - [ ] 정렬 기능
+  - [ ] 필터링
+  - [ ] 페이지네이션
+- [ ] 대시보드 위젯
+  - [ ] 차트 컴포넌트
+  - [ ] 통계 카드
+  - [ ] 알림 시스템
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 기능 개발
+- [ ] 권한 관리 시스템
+- [ ] 다국어 지원
+- [ ] 테마 커스터마이징
+- [ ] API 연동 구조 설계
 
-## Deploy on Vercel
+### 성능 최적화
+- [ ] 컴포넌트 lazy loading
+- [ ] 이미지 최적화
+- [ ] 번들 사이즈 최적화
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 문서화
+- [ ] 컴포넌트 사용 가이드
+- [ ] API 문서
+- [ ] 스토리북 구축
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 기여하기
+
+버그 리포트, 기능 제안, 풀 리퀘스트를 환영합니다.
+
+## 라이선스
+
+MIT License
