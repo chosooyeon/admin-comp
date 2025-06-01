@@ -1,4 +1,13 @@
 import React from 'react';
+import { 
+  containerClasses, 
+  headerClasses, 
+  getMainClasses,
+  backButtonClasses,
+  titleClasses,
+  homeIndicatorClasses,
+  indicatorBarClasses 
+} from '@/styles/theme/layout';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -7,20 +16,19 @@ interface LayoutProps {
   hasHomeIndicator?: boolean;
 }
 
-const Layout: React.FC<LayoutProps> = ({
+const Layout = ({
   children,
   title,
   hasBackButton = false,
   hasHomeIndicator = false,
-}) => {
+}: LayoutProps) => {
   return (
-    <div className="relative w-full max-w-[375px] min-h-screen mx-auto bg-white">
-      {/* Header */}
+    <div className={containerClasses}>
       {title && (
-        <header className="fixed top-0 left-0 right-0 h-14 bg-white z-50 max-w-[375px] mx-auto">
+        <header className={headerClasses}>
           <div className="flex items-center h-full px-4">
             {hasBackButton && (
-              <button className="w-[30px] h-[30px] flex items-center justify-center">
+              <button className={backButtonClasses}>
                 <svg
                   width="21"
                   height="21"
@@ -36,26 +44,20 @@ const Layout: React.FC<LayoutProps> = ({
                 </svg>
               </button>
             )}
-            <h1 className="text-base font-medium flex-1 text-center">
-              {title}
-            </h1>
+            <h1 className={titleClasses}>{title}</h1>
           </div>
         </header>
       )}
 
-      {/* Main Content */}
-      <main className={`flex-1 px-4 ${title ? 'pt-14' : ''} pb-[104px]`}>
-        {children}
-      </main>
+      <main className={getMainClasses(Boolean(title))}>{children}</main>
 
-      {/* Home Indicator */}
       {hasHomeIndicator && (
-        <div className="fixed bottom-0 left-0 right-0 h-[34px] bg-white max-w-[375px] mx-auto">
-          <div className="absolute left-1/2 -translate-x-1/2 bottom-[8px] w-[135px] h-[5px] bg-black rounded-full" />
+        <div className={homeIndicatorClasses}>
+          <div className={indicatorBarClasses} />
         </div>
       )}
     </div>
   );
 };
 
-export default Layout; 
+export default Layout;
