@@ -3,7 +3,6 @@ import clsx from 'clsx';
 export const containerClasses = clsx(
     'relative',
     'w-full',
-    'max-w-[375px]',
     'min-h-screen',
     'mx-auto',
     'bg-white'
@@ -17,13 +16,11 @@ export const headerClasses = clsx(
     'h-14',
     'bg-white',
     'z-50',
-    'max-w-[375px]',
     'mx-auto'
 );
 
 export const getMainClasses = (hasTitle: boolean) => clsx(
     'flex-1',
-    'px-4',
     'pb-[104px]',
     hasTitle && 'pt-14'
 );
@@ -50,7 +47,6 @@ export const homeIndicatorClasses = clsx(
     'right-0',
     'h-[34px]',
     'bg-white',
-    'max-w-[375px]',
     'mx-auto'
 );
 

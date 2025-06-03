@@ -8,7 +8,7 @@ import {
   homeIndicatorClasses,
   indicatorBarClasses 
 } from '@/styles/theme/layout';
-
+import { Icon } from '@/components/icons';
 interface LayoutProps {
   children: React.ReactNode;
   title?: string;
@@ -29,19 +29,7 @@ const Layout = ({
           <div className="flex items-center h-full px-4">
             {hasBackButton && (
               <button className={backButtonClasses}>
-                <svg
-                  width="21"
-                  height="21"
-                  viewBox="0 0 21 21"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M8.95405 4.95408L8.95405 4.95402L20.7989 4.95402"
-                    stroke="#111111"
-                    strokeWidth="1.4"
-                  />
-                </svg>
+                <Icon name="chevron-left" size={21} />
               </button>
             )}
             <h1 className={titleClasses}>{title}</h1>
