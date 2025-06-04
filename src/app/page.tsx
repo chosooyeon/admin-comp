@@ -1,15 +1,15 @@
 import "@/styles/globals.css";
 import Layout from "@/components/Layout";
-import Box from "@/components/Box";
+import Box from "@/components/box/Box";
 import { Icon } from "@/components/icons";
-import Chip from "@/components/Chip";
-import MissionBox from "@/components/MissionBox";
-import Banner from "@/components/Banner";
-import OutlineBox from "@/components/OutlineBox";
+import Chip from "@/components/chip/Chip";
+import MissionBox from "@/components/box/MissionBox";
+import Banner from "@/components/banner/Banner";
+import OutlineBox from "@/components/box/OutlineBox";
 import ProgressBar from "@/components/ProgressBar";
-import Button from "@/components/Button";
+import Button from "@/components/button/Button";
 import EmptyImage from "@/components/EmptyImage";
-import SmallButton from "@/components/SmallButton";
+import SmallButton from "@/components/button/SmallButton";
 
 export default function HomePage() {
   return (
@@ -19,21 +19,23 @@ export default function HomePage() {
         <Box className="justify-between">
           <span>나의 건강검진 결과</span>
           <div className="flex items-center gap-1">
-            <Chip variant="filled" className="text-chip">경계 항목1</Chip>
+            <Chip variant="filled" className="text-[11px] font-[bold]">경계 항목1</Chip>
             <Icon size={18} name="chevron-right" />
           </div>
         </Box>
-        <Box height="100px" className="">
+        <Box height="100px">
           <div>
-            <Chip variant="filled" className="text-chip">1주차</Chip>
-            <span>나트륨 섭취 줄이기</span>
-            <div>소금 한 꼬집 줄이면, 혈압이 한 칸 내려갑니다. 혈관은 당신의 작은 실천을 기억합니다.</div>
+            <div className="flex items-center mb-2">
+              <Chip variant="filled" className="text-[11px] font-[bold] mr-2">1주차</Chip>
+              <div className="font-bold">나트륨 섭취 줄이기</div>
+            </div>
+            <div className="text-[#777D88] text-[13px]">소금 한 꼬집 줄이면, 혈압이 한 칸 내려갑니다. 혈관은 당신의 작은 실천을 기억합니다.</div>
           </div>
         </Box>
         <MissionBox variant="burning" className="space-y-4">
           
           <div>
-            <span>14일째 참여중</span>
+            <span className="font-semibold text-xl">14일째 참여중</span>
             <Chip variant="outlined">D-42</Chip>
           </div>
 
@@ -52,7 +54,7 @@ export default function HomePage() {
         </MissionBox>
         <div className="space-y-4">
           <span>오늘의 미션</span>
-          <Chip variant="outlined" className="text-chip">오늘 자정까지</Chip>
+          <Chip variant="outlined" className="text-[11px] font-[bold]">오늘 자정까지</Chip>
           <Box className="justify-between">
             <EmptyImage variant="round" size="small" />
             <div className="ml-[-24px]">
