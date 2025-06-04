@@ -19,13 +19,13 @@ export default function HomePage() {
         <Box className="justify-between">
           <span>나의 건강검진 결과</span>
           <div className="flex items-center gap-1">
-            <Chip variant="filled">경계 항목1</Chip>
+            <Chip variant="filled" className="text-chip">경계 항목1</Chip>
             <Icon size={18} name="chevron-right" />
           </div>
         </Box>
         <Box height="100px" className="">
           <div>
-            <Chip variant="filled">1주차</Chip>
+            <Chip variant="filled" className="text-chip">1주차</Chip>
             <span>나트륨 섭취 줄이기</span>
             <div>소금 한 꼬집 줄이면, 혈압이 한 칸 내려갑니다. 혈관은 당신의 작은 실천을 기억합니다.</div>
           </div>
@@ -52,7 +52,7 @@ export default function HomePage() {
         </MissionBox>
         <div className="space-y-4">
           <span>오늘의 미션</span>
-          <Chip variant="outlined">오늘 자정까지</Chip>
+          <Chip variant="outlined" className="text-chip">오늘 자정까지</Chip>
           <Box className="justify-between">
             <EmptyImage variant="round" size="small" />
             <div className="ml-[-24px]">
