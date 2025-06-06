@@ -37,7 +37,7 @@ export default function FullPopup({
       />
       <div
         ref={popupRef}
-        className="relative bg-white rounded-lg w-full max-w-md mx-4"
+        className="scale-up relative bg-white rounded-lg w-full max-w-md mx-4"
       >
         <div className="flex items-center justify-between p-4 border-b">
           {title && <h2 className="text-lg font-semibold">{title}</h2>}

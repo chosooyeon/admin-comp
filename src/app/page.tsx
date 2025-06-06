@@ -95,13 +95,13 @@ export default function HomePage() {
           label="선택"
         />
 
-        {/* <Popup
+        <Popup
           isOpen={isPopupOpen}
           onClose={() => setIsPopupOpen(false)}
           title="알림"
         >
           <div>팝업 내용</div>
-        </Popup> */}
+        </Popup>
 
         {/* <BottomModal
           isOpen={isOpen}

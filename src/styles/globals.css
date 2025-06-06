@@ -80,6 +80,18 @@
       }
     }
   }
+  @keyframes scale-up {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  
+  .scale-up {
+    animation: scale-up 0.3s ease-out forwards;
+  }
 }
 
 /*
