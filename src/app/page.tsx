@@ -22,6 +22,8 @@ import Popover from "@/components/popup/Popover";
 import Toggle from "@/components/toggle/Toggle";
 import BottomModal from "@/components/modal/BottomModal";
 import DualLineChart from '@/components/chart/DualLineChart';
+import InnerInput from '@/components/input/InnerInput'
+import LoadingSpinner from '@/components/loading/LoadingSpinner';
 
 export default function HomePage() {
   const [isChecked, setIsChecked] = useState<boolean>(false);
@@ -52,14 +54,14 @@ export default function HomePage() {
   };
 
   const [selectedValue, setSelectedValue] = useState<string>('');
-  const [isPopupOpen, setIsPopupOpen] = useState<boolean>(true);
+  const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
   const [isToggleChecked, setIsToggleChecked] = useState<boolean>(false);
-  const [isOpen, setIsOpen] = useState<boolean>(true);
-
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(false);
   return (
     <Layout title="홈" hasBackButton>
       <div className="max-w-[500px] mx-auto px-4 space-y-6">
-
+      <LoadingSpinner isLoading={isLoading} />
       <DualLineChart />
       <Checkbox
         label="이용약관에 동의합니다"
@@ -73,6 +75,16 @@ export default function HomePage() {
           onChange={setSelectedDate}
         />
       )}
+
+      <InnerInput
+        label="이메일"
+        type="email"
+        value={email}
+        onChange={setEmail}
+        placeholder="이메일을 입력하세요"
+        required
+        error={emailError}
+      />
 
       <Input
         label="이메일"
