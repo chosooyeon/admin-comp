@@ -21,6 +21,7 @@ import Popup from "@/components/popup/FullPopup";
 import Popover from "@/components/popup/Popover";
 import Toggle from "@/components/toggle/Toggle";
 import BottomModal from "@/components/modal/BottomModal";
+import DualLineChart from '@/components/chart/DualLineChart';
 
 export default function HomePage() {
   const [isChecked, setIsChecked] = useState<boolean>(false);
@@ -59,6 +60,7 @@ export default function HomePage() {
     <Layout title="홈" hasBackButton>
       <div className="max-w-[500px] mx-auto px-4 space-y-6">
 
+      <DualLineChart />
       <Checkbox
         label="이용약관에 동의합니다"
         checked={isChecked}

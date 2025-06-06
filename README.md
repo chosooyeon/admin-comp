@@ -260,3 +260,71 @@ MIT License
 - `error`: 에러 메시지 표시
 - `required`: 필수 입력 필드 여부
 - `placement`: 팝업 위치 지정
+
+
+### Chart (recharts)
+1. 원의 테두리 추가
+```ts
+dot={{
+  fill: '#BD2459',
+  r: 6,
+  stroke: '#FFFFFF',
+  strokeWidth: 2
+}}
+```
+
+2. 선 스타일 변경
+```ts
+strokeDasharray="5 5"  // 점선 간격 조정
+strokeWidth={3}        // 선 굵기 조정
+```
+
+3. 차트 여백 조정
+
+```tsx
+<LineChart
+  data={data}
+  margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+>
+```
+
+4. 격자 추가
+```tsx
+<CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+```
+
+5. 툴팁 커스터마이징
+```tsx
+<Tooltip
+  contentStyle={{
+    backgroundColor: '#fff',
+    border: '1px solid #ccc',
+    borderRadius: '8px',
+    padding: '10px'
+  }}
+/>
+```
+
+6. 그리드 간격 조정
+```tsx
+<YAxis
+  ticks={[0, 20, 40, 60, 80, 100]} // 원하는 눈금값 직접 지정
+/>
+```
+
+7.그리드 스타일 추가 커스터마이징
+```tsx
+<CartesianGrid
+  strokeDasharray="2 3"
+  stroke="#CCCCCC"
+  strokeOpacity={0.5}
+  strokeWidth={1}
+/>
+```
+
+8. Y축레이블 포맷팅
+```tsx
+<YAxis
+  tickFormatter={(value) => `${value}%`} // 값 포맷팅
+/>
+```
