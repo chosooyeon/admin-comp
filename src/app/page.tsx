@@ -1,3 +1,6 @@
+'use client'
+import { useState, useEffect } from "react";
+
 import "@/styles/globals.css";
 import Layout from "@/components/Layout";
 import Box from "@/components/box/Box";
@@ -10,11 +13,117 @@ import ProgressBar from "@/components/ProgressBar";
 import Button from "@/components/button/Button";
 import EmptyImage from "@/components/EmptyImage";
 import SmallButton from "@/components/button/SmallButton";
+import Checkbox from "@/components/checkbox/Checkbox";
+import Calendar from "@/components/calendar/Calendar";
+import Input from "@/components/input/Input";
+import Select from "@/components/select/Select";
+import Popup from "@/components/popup/FullPopup";
+import Popover from "@/components/popup/Popover";
+import Toggle from "@/components/toggle/Toggle";
+import BottomModal from "@/components/modal/BottomModal";
 
 export default function HomePage() {
+  const [isChecked, setIsChecked] = useState<boolean>(false);
+
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+
+  const [email, setEmail] = useState<string>('');
+  const [emailError, setEmailError] = useState<string>('');
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) {
+      setEmailError('이메일을 입력해주세요.');
+    } else if (!emailRegex.test(email)) {
+      setEmailError('올바른 이메일 형식이 아닙니다.');
+    } else {
+      setEmailError('');
+    }
+  };
+
+  useEffect(() => {
+    setSelectedDate(new Date());
+  }, []);
+
+  const handleEmailChange = (value: string) => {
+    setEmail(value);
+    validateEmail(value);
+  };
+
+  const [selectedValue, setSelectedValue] = useState<string>('');
+  const [isPopupOpen, setIsPopupOpen] = useState<boolean>(true);
+  const [isToggleChecked, setIsToggleChecked] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
+
   return (
     <Layout title="홈" hasBackButton>
       <div className="max-w-[500px] mx-auto px-4 space-y-6">
+
+      <Checkbox
+        label="이용약관에 동의합니다"
+        checked={isChecked}
+        onChange={setIsChecked}
+      />
+
+      {selectedDate && (
+        <Calendar
+          selectedDate={selectedDate}
+          onChange={setSelectedDate}
+        />
+      )}
+
+      <Input
+        label="이메일"
+        type="email"
+        value={email}
+        onChange={setEmail}
+        placeholder="이메일을 입력하세요"
+        required
+        error={emailError}
+      />
+
+
+        <Select
+          options={[
+            { value: 'option1', label: '옵션 1' },
+            { value: 'option2', label: '옵션 2' },
+          ]}
+          value={selectedValue}
+          onChange={setSelectedValue}
+          label="선택"
+        />
+
+        {/* <Popup
+          isOpen={isPopupOpen}
+          onClose={() => setIsPopupOpen(false)}
+          title="알림"
+        >
+          <div>팝업 내용</div>
+        </Popup> */}
+
+        {/* <BottomModal
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          title="모달 제목"
+          onConfirm={() => {
+            // handle confirmation
+            setIsOpen(false);
+          }}
+        >
+          <div>모달 내용</div>
+        </BottomModal> */}
+
+        <Popover
+          trigger={<Button>클릭</Button>}
+          content={<div>팝업 내용</div>}
+          placement="bottom"
+        />
+
+        <Toggle
+          checked={isChecked}
+          onChange={setIsChecked}
+          label="활성화"
+        />
 
         <Box className="justify-between">
           <span>나의 건강검진 결과</span>

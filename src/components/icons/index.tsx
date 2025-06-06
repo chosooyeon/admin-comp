@@ -1,8 +1,8 @@
-import { ChevronLeftIcon, HomeIcon, PlusIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+import { ChevronLeftIcon, HomeIcon, PlusIcon, ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 // 필요한 아이콘들을 import 해주세요
 
 interface IconProps {
-  name: 'chevron-left' | 'home' | 'plus' | 'chevron-right';  // 사용할 아이콘 이름들을 타입으로 정의
+  name: 'chevron-left' | 'home' | 'plus' | 'chevron-right' | 'chevron-down';  // 사용할 아이콘 이름들을 타입으로 정의
   className?: string;
   size?: number;
   color?: string;
@@ -13,6 +13,7 @@ const iconComponents = {
   'home': HomeIcon,
   'plus': PlusIcon,
   'chevron-right': ChevronRightIcon,
+  'chevron-down' : ChevronDownIcon
 };
 
 export const Icon = ({ name, className, size = 24, color }: IconProps) => {

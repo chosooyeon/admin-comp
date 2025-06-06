@@ -77,3 +77,186 @@ http://localhost:3000 에서 결과를 확인할 수 있습니다.
 ## 라이선스
 
 MIT License
+
+
+
+# Component Usage Guide
+
+## Basic Components
+
+### Layout
+기본 레이아웃 컴포넌트
+```tsx
+<Layout title="페이지 제목" hasBackButton={true}>
+  {/* 내용 */}
+</Layout>
+```
+
+### Box
+기본 박스 컴포넌트
+```tsx
+<Box className="justify-between" height="100px">
+  {/* 내용 */}
+</Box>
+```
+
+### MissionBox
+미션 정보를 표시하는 박스 컴포넌트
+```tsx
+<MissionBox variant="burning" className="space-y-4">
+  {/* 미션 관련 내용 */}
+</MissionBox>
+```
+
+### OutlineBox
+테두리가 있는 박스 컴포넌트
+```tsx
+<OutlineBox>
+  {/* 내용 */}
+</OutlineBox>
+```
+
+### Banner
+배너 형태의 컴포넌트
+```tsx
+<Banner>
+  {/* 배너 내용 */}
+</Banner>
+```
+
+## Form Components
+
+### Input
+입력 필드 컴포넌트
+```tsx
+<Input
+  label="이메일"
+  type="email"
+  value={email}
+  onChange={setEmail}
+  placeholder="이메일을 입력하세요"
+  required
+  error={emailError}
+/>
+```
+
+### Select
+선택 컴포넌트
+```tsx
+<Select
+  options={[
+    { value: 'option1', label: '옵션 1' },
+    { value: 'option2', label: '옵션 2' },
+  ]}
+  value={selectedValue}
+  onChange={setSelectedValue}
+  label="선택"
+/>
+```
+
+### Checkbox
+체크박스 컴포넌트
+```tsx
+<Checkbox
+  label="이용약관에 동의합니다"
+  checked={isChecked}
+  onChange={setIsChecked}
+/>
+```
+
+### Toggle
+토글 스위치 컴포넌트
+```tsx
+<Toggle
+  checked={isChecked}
+  onChange={setIsChecked}
+  label="활성화"
+/>
+```
+
+### Calendar
+날짜 선택 캘린더 컴포넌트
+```tsx
+<Calendar
+  selectedDate={selectedDate}
+  onChange={setSelectedDate}
+/>
+```
+
+## UI Components
+
+### Button
+기본 버튼 컴포넌트
+```tsx
+<Button>
+  <span>버튼 텍스트</span>
+  <Icon size={12} name="chevron-right" />
+</Button>
+```
+
+### SmallButton
+작은 크기의 버튼 컴포넌트
+```tsx
+<SmallButton>달성하기</SmallButton>
+```
+
+### Chip
+칩 컴포넌트
+```tsx
+<Chip variant="filled" className="text-[11px] font-[bold]">텍스트</Chip>
+<Chip variant="outlined">D-42</Chip>
+```
+
+### Icon
+아이콘 컴포넌트
+```tsx
+<Icon size={18} name="chevron-right" />
+```
+
+### ProgressBar
+진행 상태 표시 컴포넌트
+```tsx
+<ProgressBar percent={50} variant="burning" />
+```
+
+### EmptyImage
+이미지 플레이스홀더 컴포넌트
+```tsx
+<EmptyImage variant="round" size="small" />
+<EmptyImage variant="rectangle" size="large" />
+```
+
+## Popup Components
+
+### Popup (Full Screen)
+전체 화면 팝업 컴포넌트
+```tsx
+<Popup
+  isOpen={isPopupOpen}
+  onClose={() => setIsPopupOpen(false)}
+  title="알림"
+>
+  {/* 팝업 내용 */}
+</Popup>
+```
+
+### Popover
+작은 팝업 컴포넌트
+```tsx
+<Popover
+  trigger={<Button>클릭</Button>}
+  content={<div>팝업 내용</div>}
+  placement="bottom"
+/>
+```
+
+## 주요 Props 설명
+
+- `variant`: 컴포넌트의 스타일 변형 ("filled", "outlined", "burning" 등)
+- `className`: 추가 스타일링을 위한 CSS 클래스
+- `size`: 컴포넌트 크기 ("small", "large" 등)
+- `onChange`: 값 변경 시 호출되는 함수
+- `checked`: 체크박스/토글의 선택 상태
+- `error`: 에러 메시지 표시
+- `required`: 필수 입력 필드 여부
+- `placement`: 팝업 위치 지정
