@@ -7,6 +7,7 @@ import RadioButtonGroup from '@/components/radio/Radio';
 import Table from '@/components/table/Table';
 import TopButton from '@/components/button/TopButton';
 import { Column } from '@/components/table/Table';
+import DualBarChart from "@/components/chart/DualBarChart";
 
 export default function HomePage() {
   const [selectedHealthPreferences, setSelectedHealthPreferences] = useState<string[]>([]);
@@ -67,6 +68,19 @@ export default function HomePage() {
     { id: '2', name: '김철수', email: 'kim@example.com' },
   ];
 
+  const singleData = [
+    { name: '월', value1: 4 },
+    { name: '화', value1: 37 },
+    { name: '수', value1: 24 },
+  ];
+
+  // 이중 바 차트 (둥근 모서리, 커스텀 색상)
+  const dualData = [
+    { name: '월', value1: 4, value2: 70 },
+    { name: '화', value1: 37, value2: 61 },
+    { name: '수', value1: 24, value2: 80 },
+  ];
+
   return (
     <Layout title="홈" hasBackButton>
       <div className="max-w-[500px] mx-auto px-4 space-y-6">
@@ -94,6 +108,22 @@ export default function HomePage() {
       </div>
 
       <TopButton />
+
+      <DualBarChart 
+        data={singleData}
+        type="square"
+        isDual={false}
+      />
+
+      <DualBarChart 
+        data={dualData}
+        type="rounded"
+        isDual={true}
+        colors={{
+          primary: '#3B82F6',
+          secondary: '#9CA3AF'
+        }}
+      />
 
         {/* 다중 선택 버튼 그룹 */}
         <div className="space-y-2">
