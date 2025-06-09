@@ -8,6 +8,7 @@ import Table from '@/components/table/Table';
 import TopButton from '@/components/button/TopButton';
 import { Column } from '@/components/table/Table';
 import DualBarChart from "@/components/chart/DualBarChart";
+import MarqueeBanner from '@/components/banner/MarqueeBanner';
 
 export default function HomePage() {
   const [selectedHealthPreferences, setSelectedHealthPreferences] = useState<string[]>([]);
@@ -85,6 +86,12 @@ export default function HomePage() {
     <Layout title="홈" hasBackButton>
       <div className="max-w-[500px] mx-auto px-4 space-y-6">
 
+      <MarqueeBanner 
+        text="중요 공지사항: 이 텍스트는 왼쪽에서 오른쪽으로 흐르면서 표시됩니다!"
+        speed="normal"
+        className="bg-blue-500 text-white"
+      />
+      
       <div>
         <h2 className="text-2xl font-bold mb-4">라디오 버튼 그룹</h2>
         <RadioButtonGroup
