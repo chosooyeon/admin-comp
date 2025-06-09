@@ -24,6 +24,9 @@ import BottomModal from "@/components/modal/BottomModal";
 import DualLineChart from '@/components/chart/DualLineChart';
 import InnerInput from '@/components/input/InnerInput'
 import LoadingSpinner from '@/components/loading/LoadingSpinner';
+import TextArea from '@/components/textarea/TextArea';
+import Accordion from '@/components/accordion/Accordion';
+import Tab from "@/components/tab/Tab";
 
 export default function HomePage() {
   const [isChecked, setIsChecked] = useState<boolean>(false);
@@ -63,6 +66,15 @@ export default function HomePage() {
   const [isToggleChecked, setIsToggleChecked] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
+
+
+  const [selectedTab, setSelectedTab] = useState('tab1');
+
+  const tabOptions = [
+    { id: 'tab1', label: '주간' },
+    { id: 'tab2', label: '월간' },
+  ];
+
   return (
     <Layout title="홈" hasBackButton>
       <div className="max-w-[500px] mx-auto px-4 space-y-6">
@@ -93,6 +105,20 @@ export default function HomePage() {
         />
       )}
 
+      <Tab 
+        options={tabOptions}
+        selectedId={selectedTab}
+        onChange={setSelectedTab}
+      />
+      <Accordion 
+        title="복약 유의사항"
+        content="위 처방약 복용 시 대표적으로 '저혈당으로 인한 어지러움 및 현기증, 햇빛에 의한 피부 알레르기 반응'의 부작용이 나타날 수 있어요."
+      />
+      <TextArea
+        maxLength={500}
+        placeholder="내용을 입력해주세요..."
+        onChange={(value:any) => console.log(value)}
+      />
       <InnerInput
         label="이메일"
         type="email"
