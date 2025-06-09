@@ -53,6 +53,11 @@ export default function HomePage() {
     validateEmail(value);
   };
 
+  const handleDateChange = (date: Date) => {
+    setSelectedDate(date);
+    // 필요한 경우 다른 로직 추가
+  };
+
   const [selectedValue, setSelectedValue] = useState<string>('');
   const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
   const [isToggleChecked, setIsToggleChecked] = useState<boolean>(false);
@@ -71,8 +76,20 @@ export default function HomePage() {
 
       {selectedDate && (
         <Calendar
-          selectedDate={selectedDate}
-          onChange={setSelectedDate}
+          highlightedDates={[
+            new Date(2025, 5, 15),
+            new Date(2025, 5, 20)
+          ]}
+          achievements={[
+            {
+              date: new Date(2025, 5, 15),
+              completed: [true, true, true]  // 이 날짜는 하단에 노란색 원들이 표시됨
+            },
+            {
+              date: new Date(2025, 5, 20),
+              completed: [true, false, true]  // 이 날짜는 모두 true가 아니므로 하단 원들이 표시되지 않음
+            }
+          ]}
         />
       )}
 
@@ -139,7 +156,7 @@ export default function HomePage() {
           label="활성화"
         />
 
-        <Box className="justify-between">
+        {/* <Box className="justify-between">
           <span>나의 건강검진 결과</span>
           <div className="flex items-center gap-1">
             <Chip variant="filled" className="text-[11px] font-[bold]">경계 항목1</Chip>
@@ -219,8 +236,6 @@ export default function HomePage() {
             <EmptyImage variant="rectangle" size="small" className="w-[60px] h-[60px]"/>
           </Banner>
 
-          {/* <div>복약현황</div>
-          <div>나의 건강 변화</div> */}
           <div>
             <div className="flex items-center justify-between">
               <span>건강 뉴스</span>
@@ -232,7 +247,7 @@ export default function HomePage() {
               효과를 볼 수 있어요</div>
             </OutlineBox>
           </div>
-        </div>
+        </div> */}
       </div>
     </Layout>
   );
