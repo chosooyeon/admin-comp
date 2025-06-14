@@ -1,9 +1,11 @@
 'use client'
 
+import SingleLineChart from "@/components/chart/SingleLineChart";
 import Layout from "@/components/Layout"
 import DotLoading from "@/components/loading/DotLoading";
 // import StepCircles from '@/components/medicine/StepCircle';
 import ProgressBar from "@/components/progressbar/ProgressBar";
+
 
 export default function MainPage() {
     return (
@@ -12,6 +14,7 @@ export default function MainPage() {
             
             <ProgressBar progress={1} className="mt-9"/>
             <DotLoading isLoading={true} color="#FF862F" />
+            <SingleLineChart/>
             {/* 8주는 56일, 12주는 84일 */}
             {/* <StepCircles 
             startDate={new Date('2025-06-01')} 
