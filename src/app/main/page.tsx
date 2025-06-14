@@ -1,13 +1,14 @@
 'use client'
 
 import Layout from "@/components/Layout"
+import DotLoading from "@/components/loading/DotLoading";
 import StepCircles from '@/components/medicine/StepCircle';
 
 export default function MainPage() {
     return (
         <Layout title="홈" hasBackButton>
             <div className="max-w-[500px] mx-auto px-4 space-y-6">
-
+            <DotLoading isLoading={true} color="#FF862F" />
             {/* 8주는 56일, 12주는 84일 */}
             <StepCircles 
             startDate={new Date('2025-06-01')} 
