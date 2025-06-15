@@ -13,7 +13,7 @@ type StepCircleProps = {
   onClick?: () => void;
 };
 
-const StepCircle: React.FC<StepCircleProps> = ({ dateInfo, isSelected, onClick }) => {
+const StepCircle = ({ dateInfo, isSelected, onClick }:StepCircleProps) => {
   console.log(dateInfo);
   // 4등분된 원의 각 부분의 채워짐 여부를 계산
   const getSegmentFill = (segment: number) => {
@@ -22,14 +22,14 @@ const StepCircle: React.FC<StepCircleProps> = ({ dateInfo, isSelected, onClick }
   
   return (
     <div
-      className={`flex flex-col items-center gap-1 cursor-pointer ${
-        dateInfo.isToday ? 'bg-[#F7F7F7] rounded-[44px] w-[42px] h-[76px] p-[10px_3px]' : 
-        isSelected ? 'bg-[rgba(255,237,148,0.50)] rounded-[44px] w-[42px] h-[76px] p-[10px_3px]' : ''
+      className={`flex flex-col items-center gap-1 cursor-pointer text-center ${
+        dateInfo.isToday ? 'bg-[#F7F7F7] rounded-[44px] w-[42px] h-[76px] ' : 
+        isSelected ? 'bg-[rgba(255,237,148,0.50)] rounded-[44px] w-[42px] h-[76px] ' : ''
       }`}
       
       onClick={onClick}>
         {dateInfo.isToday}
-      <span className="text-xs text-gray-500">
+      <span className="text-sm text-[#666C77]">
           {dateInfo.dayOfWeek}
         </span>
       <div className="relative w-9 h-9">
@@ -56,8 +56,8 @@ const StepCircle: React.FC<StepCircleProps> = ({ dateInfo, isSelected, onClick }
             />
           ))}
 
-          <span className="text-xs text-gray-600 transition-colors duration-300">
-            {dateInfo.date}
+          <span className="text-lg text-[#999EAA]">
+            {dateInfo.date.split('/')[1]}
           </span>
         </div>
       </div>
@@ -115,21 +115,28 @@ const StepCircles: React.FC<StepCirclesProps> = ({ startDate, duration, progress
   };
 
   return (
-    <div className="flex gap-3 items-center">
-      {dateInfos.map((dateInfo, index) => {
-        const currentDate = new Date(startDate);
-        currentDate.setDate(startDate.getDate() + index);
-        const isSelected = selectedDate?.getTime() === currentDate.getTime();
+    <div
+      style={{
+        width: 'calc(100vw - var(--removed-body-scroll-bar-size, 0px))'
+      }}
+     className="relative left-1/2 -translate-x-1/2 w-[calc(100vw)] md:w-[calc(100vw-40px)] 
+    w-full overflow-x-auto">
+      <div className="flex gap-3 items-center">
+        {dateInfos.map((dateInfo, index) => {
+          const currentDate = new Date(startDate);
+          currentDate.setDate(startDate.getDate() + index);
+          const isSelected = selectedDate?.getTime() === currentDate.getTime();
 
-        return (
-          <StepCircle 
-            key={index} 
-            dateInfo={dateInfo}
-            isSelected={isSelected}
-            onClick={() => handleDateClick(index)}
-          />
-        );
-      })}
+          return (
+            <StepCircle 
+              key={index} 
+              dateInfo={dateInfo}
+              isSelected={isSelected}
+              onClick={() => handleDateClick(index)}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

@@ -3,7 +3,7 @@
 import SingleLineChart from "@/components/chart/SingleLineChart";
 import Layout from "@/components/Layout"
 import DotLoading from "@/components/loading/DotLoading";
-// import StepCircles from '@/components/medicine/StepCircle';
+import StepCircles from '@/components/medicine/StepCircle';
 import ProgressBar from "@/components/progressbar/ProgressBar";
 
 
@@ -12,18 +12,19 @@ export default function MainPage() {
         <Layout title="홈" hasBackButton>
             <div className="max-w-[500px] mx-auto px-4 space-y-6">
             
+            {/* 미션 3개씩 8주의 경우 24개 12주의 경우  */}
             <ProgressBar progress={1} className="mt-9"/>
             <DotLoading isLoading={true} color="#FF862F" />
             <SingleLineChart/>
             {/* 8주는 56일, 12주는 84일 */}
-            {/* <StepCircles 
+            <StepCircles 
             startDate={new Date('2025-06-01')} 
             duration={56}
             progressData={[0, 1, 2, 3, 4]} // 각 주차별 진행도 (0-4)
             onDateSelect={(date) => {
                 console.log('Selected date:', date);
             }}
-            /> */}
+            />
                             
             </div>
         </Layout>
