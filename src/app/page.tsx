@@ -27,8 +27,10 @@ import LoadingSpinner from '@/components/loading/LoadingSpinner';
 import TextArea from '@/components/textarea/TextArea';
 import Accordion from '@/components/accordion/Accordion';
 import Tab from "@/components/tab/Tab";
+import { mainIntegration } from "@/api/api";
 
 export default function HomePage() {
+
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -49,6 +51,11 @@ export default function HomePage() {
 
   useEffect(() => {
     setSelectedDate(new Date());
+    async function fetchData() {
+      const response = await mainIntegration();
+      console.log(response);
+    }
+    fetchData();
   }, []);
 
   const handleEmailChange = (value: string) => {
