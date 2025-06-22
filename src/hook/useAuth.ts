@@ -1,17 +1,17 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { authService } from '../api/services/auth';
-import { useRouter } from 'next/navigation';
+import { useAppRouter } from './useRouter';
 
 export const useAuth = () => {
   const queryClient = useQueryClient();
-  const router = useRouter();
+  const { navigate } = useAppRouter();
 
   const loginMutation = useMutation({
     mutationFn: authService.login,
     onSuccess: (data) => {
       localStorage.setItem('authToken', data.data.token);
       queryClient.setQueryData(['user'], data.data.user);
-      router.push('/dashboard');
+      navigate.toDashboard();
     },
     onError: (error) => {
       console.error('Login failed:', error);
@@ -23,7 +23,7 @@ export const useAuth = () => {
     onSuccess: (data) => {
       localStorage.setItem('authToken', data.data.token);
       queryClient.setQueryData(['user'], data.data.user);
-      router.push('/dashboard');
+      navigate.toDashboard();
     },
   });
 
@@ -32,7 +32,7 @@ export const useAuth = () => {
     onSuccess: () => {
       localStorage.removeItem('authToken');
       queryClient.clear();
-      router.push('/login');
+      navigate.toLogin();
     },
   });
 
@@ -53,4 +53,4 @@ export const useAuth = () => {
     isRegistering: registerMutation.isPending,
     isLoggingOut: logoutMutation.isPending,
   };
-}; 
+};

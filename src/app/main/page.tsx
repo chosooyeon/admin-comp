@@ -5,13 +5,23 @@ import Layout from "@/components/Layout"
 import DotLoading from "@/components/loading/DotLoading";
 import StepCircles from '@/components/medicine/StepCircle';
 import ProgressBar from "@/components/progressbar/ProgressBar";
-
+import WaveBackground from "@/components/background/WaveBackground";
 
 export default function MainPage() {
     return (
         <Layout title="홈" hasBackButton>
             <div className="max-w-[500px] mx-auto px-4 space-y-6">
-            
+            {/* 컵 안의 물결 효과 */}
+            <div className="flex justify-center">
+                <WaveBackground 
+                    height="210px" 
+                    insideCup={true}
+                    waveColor1="#48BDF9"
+                    waveColor2="#70CEFF"
+                    opacity1={0.8}
+                    opacity2={0.6}
+                />
+            </div>
             {/* 미션 3개씩 8주의 경우 24개 12주의 경우  */}
             <ProgressBar progress={1} className="mt-9"/>
             <DotLoading isLoading={true} color="#FF862F" />

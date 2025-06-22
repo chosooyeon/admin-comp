@@ -80,6 +80,46 @@
       }
     }
   }
+
+  /* 물결 애니메이션 */
+  @keyframes wave1 {
+    0%, 100% {
+      transform: translateX(0) translateY(0);
+    }
+    25% {
+      transform: translateX(-10px) translateY(-5px);
+    }
+    50% {
+      transform: translateX(-5px) translateY(-10px);
+    }
+    75% {
+      transform: translateX(5px) translateY(-3px);
+    }
+  }
+
+  @keyframes wave2 {
+    0%, 100% {
+      transform: translateX(0) translateY(0);
+    }
+    25% {
+      transform: translateX(15px) translateY(-8px);
+    }
+    50% {
+      transform: translateX(8px) translateY(-12px);
+    }
+    75% {
+      transform: translateX(-8px) translateY(-6px);
+    }
+  }
+
+  .animate-wave1 {
+    animation: wave1 8s ease-in-out infinite;
+  }
+
+  .animate-wave2 {
+    animation: wave2 10s ease-in-out infinite;
+  }
+
   @keyframes scale-up {
     from {
       transform: scale(0);
