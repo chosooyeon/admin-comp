@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate:default": "openapi-generator-cli generate -g typescript-fetch -i ./input/pet-store.json -o ./generate -c ./config.yaml",
+    "generate": "openapi-generator-cli generate -g typescript-fetch -i ./input/pet-store.json -o ./generate -t ./mustaches -c ./openapi.json",
+    "template": "openapi-generator-cli author template -g typescript-fetch -o ./mustaches"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
