@@ -8,12 +8,23 @@ import ProgressBar from "@/components/progressbar/ProgressBar";
 import WaveBackground from "@/components/background/WaveBackground";
 import ScaleRuler from "@/components/ruler/ScaleRuler";
 import RemainingTimeDisplay from '@/components/RemainingTimeDisplay';
+import { 
+    generate8WeekProgram, 
+    generate12WeekProgram,
+    printWeekProgramList 
+} from '@/util/weekProgram.util';
 
 export default function MainPage() {
+    // 8주차 프로그램 리스트 생성
+    const eightWeekProgram = generate8WeekProgram();
+    printWeekProgramList(eightWeekProgram);
+
+    // 12주차 프로그램 리스트 생성  
+    const twelveWeekProgram = generate12WeekProgram();
+    printWeekProgramList(twelveWeekProgram);
     return (
         <Layout title="홈" hasBackButton>
             <div className="max-w-[500px] mx-auto px-4 space-y-6">
-            
             <RemainingTimeDisplay />
             
             <ScaleRuler 
