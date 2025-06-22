@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 type DateInfo = {
   date: string;  // "8/1" 형식
@@ -23,8 +23,9 @@ const StepCircle = ({ dateInfo, isSelected, onClick }:StepCircleProps) => {
   return (
     <div
       className={`flex flex-col items-center gap-1 cursor-pointer text-center ${
+        isSelected ? 'bg-[rgba(255,237,148,0.50)] rounded-[44px] w-[42px] h-[76px] ':
         dateInfo.isToday ? 'bg-[#F7F7F7] rounded-[44px] w-[42px] h-[76px] ' : 
-        isSelected ? 'bg-[rgba(255,237,148,0.50)] rounded-[44px] w-[42px] h-[76px] ' : ''
+        ''
       }`}
       
       onClick={onClick}>
@@ -74,7 +75,112 @@ type StepCirclesProps = {
 
 const StepCircles: React.FC<StepCirclesProps> = ({ startDate, duration, progressData, onDateSelect }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [startScrollLeft, setStartScrollLeft] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  
+  // 스크롤 위치를 인덱스로 변환
+  const scrollToIndex = (scrollLeft: number) => {
+    const containerWidth = scrollContainerRef.current?.offsetWidth || 0;
+    const centerOffset = containerWidth / 2;
+    const itemWidth = 42 + 12; // StepCircle 너비 + gap
+    const scrollOffset = scrollLeft + centerOffset;
+    const index = Math.round(scrollOffset / itemWidth);
+    return Math.max(0, Math.min(duration - 1, index));
+  };
 
+  // 인덱스를 스크롤 위치로 변환
+  const indexToScroll = (index: number) => {
+    const itemWidth = 42 + 12; // StepCircle 너비 + gap
+    const containerWidth = scrollContainerRef.current?.offsetWidth || 0;
+    const centerOffset = containerWidth / 2;
+    return index * itemWidth - centerOffset;
+  };
+
+  // 마우스/터치 이벤트 핸들러
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    setStartX(e.clientX);
+    setStartScrollLeft(scrollContainerRef.current?.scrollLeft || 0);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    
+    const deltaX = e.clientX - startX;
+    const newScrollLeft = startScrollLeft - deltaX;
+    
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollLeft = newScrollLeft;
+    }
+  };
+
+  const handleMouseUp = () => {
+    if (!isDragging) return;
+    
+    setIsDragging(false);
+    
+    // 스냅 기능: 가장 가까운 StepCircle으로 스냅
+    if (scrollContainerRef.current) {
+      const currentScrollLeft = scrollContainerRef.current.scrollLeft;
+      const snappedIndex = scrollToIndex(currentScrollLeft);
+      const snappedScrollLeft = indexToScroll(snappedIndex);
+      
+      scrollContainerRef.current.scrollTo({
+        left: snappedScrollLeft,
+        behavior: 'smooth'
+      });
+      
+      // 선택된 날짜 업데이트
+      const clickedDate = new Date(startDate);
+      clickedDate.setDate(startDate.getDate() + snappedIndex);
+      setSelectedDate(clickedDate);
+      onDateSelect?.(clickedDate);
+    }
+  };
+
+  // 터치 이벤트 핸들러
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsDragging(true);
+    setStartX(e.touches[0].clientX);
+    setStartScrollLeft(scrollContainerRef.current?.scrollLeft || 0);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    
+    const deltaX = e.touches[0].clientX - startX;
+    const newScrollLeft = startScrollLeft - deltaX;
+    
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollLeft = newScrollLeft;
+    }
+  };
+
+  const handleTouchEnd = () => {
+    handleMouseUp();
+  };
+
+  // 스크롤 이벤트 리스너
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollContainerRef.current && !isDragging) {
+        const scrollLeft = scrollContainerRef.current.scrollLeft;
+        const index = scrollToIndex(scrollLeft);
+        const currentDate = new Date(startDate);
+        currentDate.setDate(startDate.getDate() + index);
+        setSelectedDate(currentDate);
+      }
+    };
+
+    const scrollContainer = scrollContainerRef.current;
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', handleScroll);
+      return () => scrollContainer.removeEventListener('scroll', handleScroll);
+    }
+  }, [isDragging, startDate, duration]);
+  
   // 시작 날짜로부터 duration 일 동안의 날짜 정보 생성
   const generateDateInfo = (): DateInfo[] => {
     const dateInfos: DateInfo[] = [];
@@ -121,7 +227,18 @@ const StepCircles: React.FC<StepCirclesProps> = ({ startDate, duration, progress
       }}
      className="relative left-1/2 -translate-x-1/2 w-[calc(100vw)] md:w-[calc(100vw-40px)] 
     w-full overflow-x-auto">
-      <div className="flex gap-3 items-center">
+      <div 
+        ref={scrollContainerRef}
+        className="flex gap-3 items-center overflow-x-auto scrollbar-hide"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         {dateInfos.map((dateInfo, index) => {
           const currentDate = new Date(startDate);
           currentDate.setDate(startDate.getDate() + index);

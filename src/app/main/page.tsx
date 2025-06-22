@@ -6,11 +6,22 @@ import DotLoading from "@/components/loading/DotLoading";
 import StepCircles from '@/components/medicine/StepCircle';
 import ProgressBar from "@/components/progressbar/ProgressBar";
 import WaveBackground from "@/components/background/WaveBackground";
+import ScaleRuler from "@/components/ruler/ScaleRuler";
+import RemainingTimeDisplay from '@/components/RemainingTimeDisplay';
 
 export default function MainPage() {
     return (
         <Layout title="홈" hasBackButton>
             <div className="max-w-[500px] mx-auto px-4 space-y-6">
+            
+            <RemainingTimeDisplay />
+            
+            <ScaleRuler 
+                minValue={0}
+                maxValue={100}
+                initialValue={50}
+                onValueChange={(value) => console.log('Selected value:', value)}
+                />
             {/* 컵 안의 물결 효과 */}
             <div className="flex justify-center">
                 <WaveBackground 
